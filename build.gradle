@@ -1,0 +1,50 @@
+plugins {
+    id 'fabric-loom' version "${loom_version}"
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.fabricmc.net/' }
+    maven { url = 'https://maven.terraformersmc.com/' }
+    maven { url = 'https://maven.meteordev.org/releases' }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    modImplementation "meteordevelopment:meteor-client:${project.meteor_version}"
+}
+
+loom { 
+    splitEnvironmentSourceSets() 
+}
+
+java {
+    withSourcesJar()
+    toolchain { 
+        languageVersion = JavaLanguageVersion.of(21) 
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+    options.release = 21
+}
+
+publishing {
+    publications { 
+        create("mavenJava", MavenPublication) {
+            from components.java 
+        } 
+    }
+
+    repositories { 
+        mavenLocal() 
+    }
+}

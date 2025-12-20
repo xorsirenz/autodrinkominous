@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "id": "autodrinkominous",
+    "version": "${version}",
+    "name": "Auto Drink Ominous",
+    "description": "Automatically drink another ominous bottle when the raid ends.",
+    "authors": [
+        "xorsirenz"
+    ],
+    "contact": {
+        "sources": "https://github.com/xorsirenz/auto_drink_ominous"
+    },
+    "license": "MIT",
+    "environment": "client",
+    "entrypoints": {
+        "meteor": [
+            "dev.xorsirenz.autodrinkominous.AddonInit"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=0.17.2",
+        "minecraft": ">=1.21.4",
+        "java": ">=21",
+        "fabric-api": "*",
+        "meteor-client": "*"
+    }
+}
